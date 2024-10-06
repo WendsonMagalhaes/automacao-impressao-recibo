@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automação de Impressão</title>
+    <link rel="stylesheet" href="style.css"> <!-- O caminho para o CSS -->
+</head>
+
+<body>
+    <h1>Impressão de Contratos</h1>
+    <input type="text" id="contratos" placeholder="Insira os contratos" />
+    <button id="imprimir">Imprimir</button>
+
+    <div id="lista-contratos"></div> <!-- Contêiner para a lista de contratos -->
+
+    <script>
+        document.getElementById('contratos').addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Previne o comportamento padrão do Enter
+                const input = document.getElementById('contratos');
+                const contrato = input.value.trim();
+
+                if (contrato) {
+                    adicionarContrato(contrato); // Adiciona o contrato à lista
+                    input.value = ''; // Limpa o input
+                }
+            }
+        });
+
+        function adicionarContrato(contrato) {
+            const listaContratos = document.getElementById('lista-contratos');
+            const novoContrato = document.createElement('span'); // Cria um novo elemento span
+            novoContrato.textContent = contrato; // Define o texto do contrato
+            novoContrato.classList.add('contrato'); // Adiciona a classe para estilização
+            listaContratos.appendChild(novoContrato); // Adiciona o contrato à lista
+            listaContratos.appendChild(document.createElement('br')); // Adiciona uma quebra de linha
+        }
+
+        document.getElementById('imprimir').addEventListener('click', async () => {
+            const listaDeContratos = Array.from(document.querySelectorAll('.contrato')).map(span => span.textContent); // Obtém todos os contratos
+            const response = await fetch('/imprimir', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ contratos: listaDeContratos })
+            });
+
+            const data = await response.json();
+            alert(data.message);
+        });
+    </script>
+</body>
+
+</html>

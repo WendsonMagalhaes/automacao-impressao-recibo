@@ -1,0 +1,64 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    /* Cor de fundo */
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+    /* Cor do título */
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: 300px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+    /* Cor do botão ao passar o mouse */
+}
+
+#lista-contratos {
+
+    margin-top: 20px;
+    display: flex;
+    /* Usa flexbox para organizar os contratos */
+    flex-wrap: wrap;
+    /* Permite que os contratos quebrem para a próxima linha se necessário */
+}
+
+.contrato {
+    background-color: #007BFF;
+    /* Fundo azul */
+    color: #1b1a1a;
+    /* Cor do texto dos contratos */
+    font-weight: bold;
+    /* Negrito */
+    margin-right: 5px;
+    /* Espaçamento entre os contratos */
+    border-radius: 10px;
+    /* Bordas arredondadas */
+    padding: 15px;
+    /* Espaçamento interno */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Sombra do cartão */
+    display: inline-block;
+    /* Para que o cartão se ajuste ao conteúdo */
+    width: auto;
+    /* Largura do cartão */
+}
